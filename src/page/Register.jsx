@@ -13,7 +13,7 @@ export default function Register() {
         console.log(data)
     }
     return (
-        <div className="md:w-full  h-[100vh] px-2 sm:px-20 md:px-10 px-lg-20 lg:max-w-[70%] flex items-center">
+        <div className="md:w-full h-screen px-2 sm:px-20 md:px-10 px-lg-20 lg:max-w-70 flex items-center">
             <div className="md:grid md:grid-cols-2 bg-white border-black border-1 rounded-lg">
                 <div className="hidden md:flex items-center">
                     <img src={imgRegister} alt="img register" />
@@ -48,9 +48,7 @@ export default function Register() {
                             <input type="submit" className="bg-sky-800 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full" value='Sign Up' />
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
     )
