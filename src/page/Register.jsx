@@ -10,23 +10,31 @@ export default function Register() {
     // useform for get value inputs and handle error validation
     const { register, formState: { errors }, handleSubmit } = useForm();
 
-    //upload image and show image in form------------------------------------
+    //upload image and show image in form--photo should not be larger than 1Mb and only jpg files----------------------------------
     const imgProfile = register("imgProfile", { required: "img is required" })
     const [mydata, setData] = useState('')
+
     const handleImageUpload = (event) => {
         if (event.target.files && event.target.files[0]) {
             let reader = new FileReader();
             let file = event.target.files[0];
-            console.log(event.target.files[0])
-
-            reader.onloadend = () => {
-                setData({
-                    ...mydata,
-                    imagePreview: reader.result,
-                    file: file
-                });
-            };
-            reader.readAsDataURL(file);
+            var extension = file.name.split('.').pop().toLowerCase();
+            if(extension == 'jpg'){
+                if( file.size < 1000){
+                    reader.onloadend = () => {
+                        setData({
+                            ...mydata,
+                            imagePreview: reader.result,
+                            file: file
+                        });
+                    };
+                    reader.readAsDataURL(file);
+                }else{
+                    alert("photo should not be larger than 1Mb")
+                }
+            }else{
+                alert("photo only jpg files")
+            }
         }
     }
 
