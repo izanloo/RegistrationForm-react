@@ -14,14 +14,14 @@ export default function Register() {
     }
     return (
         <div className="md:w-full h-screen px-2 sm:px-20 md:px-10 px-lg-20 lg:max-w-70 flex items-center">
-            <div className="md:grid md:grid-cols-2 bg-white border-black border-1 rounded-lg">
+            <div className="md:grid md:grid-cols-2 bg-white border-black border-1 rounded-lg shadow-md lg:shadow-lg">
                 <div className="hidden md:flex items-center">
                     <img src={imgRegister} alt="img register" />
                 </div>
                 <div className="w-full rounded-tr-lg rounded-br-lg shadow">
                     <div className="py-4 px-8 ">
                         <div className="flex justify-center mb-3">
-                            <label for="file" className="block w-36 h-36 border border-black bg-cover border-dashed rounded-full text-center " style={{ backgroundImage: `url(${imgDefault})` }}>
+                            <label htmlFor="file" className="block w-36 h-36 border border-black bg-cover border-dashed rounded-full text-center " style={{ backgroundImage: `url(${imgDefault})` }}>
                             </label>
                             <input type="file" id="file" className="hidden" name="thumbnail" />
                             <ErrorMessage errors={errors} name="thumbnail" render={({ message }) => <p className="text-red-700 pt-2 flex items-center"><BiErrorCircle />{message}</p>} />
