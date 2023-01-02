@@ -17,11 +17,12 @@ export default function Register() {
     //upload image and show image in form--photo should not be larger than 1Mb and only jpg files----------------------------------
     const imgProfile = register("imgProfile", { required: "img is required" })
     const [mydata, setData] = useState('')
+    const [check, setCheck] = useState(false)
 
     const handleImageUpload = (event) => {
         let file = event.target.files[0];
         const extension = file.name.split('.').pop().toLowerCase();
-        if (extension == 'jpg' || 'jfif') {
+        if (extension == 'jpg') {
             if (file.size < 1000) {
                 let reader = new FileReader();
                 reader.onloadend = () => {
@@ -32,6 +33,7 @@ export default function Register() {
                     });
                 };
                 reader.readAsDataURL(file);
+                setCheck(true)
             } else {
                 toast.error("photo should not be larger than 1Mb");
             }
@@ -39,13 +41,16 @@ export default function Register() {
             toast.error("photo only jpg files")
         }
         setData('')
+
     }
     // handleSubmit----------------------------------------
     const onSubmit = (data) => {
         if (data.Age < 18 || data.Age < 0) {
-            alert("age should not be less than 18")
-        } else {
+            toast.error("age should not be less than 18 :)")
+        } else if (check) {
             setDataUser(data)
+        } else {
+            toast.error("please enter phoo!!!!")
         }
     }
     return (
@@ -55,13 +60,15 @@ export default function Register() {
                     <div className="hidden md:flex items-center">
                         <img src={imgRegister} alt="img register" />
                     </div>
-                    {dataUser != '' ? <TableDataUser dataUser={dataUser} mydata={mydata}/> :
+                    {dataUser != '' ? <TableDataUser dataUser={dataUser} mydata={mydata} /> :
 
                         <form onSubmit={handleSubmit(onSubmit)} className="w-full rounded-tr-lg rounded-br-lg shadow">
                             <div className="py-4 px-8 ">
                                 <div className="flex flex-col items-center mb-3">
-                                    <label htmlFor="file" className="block w-36 h-36 border border-black bg-cover border-dashed rounded-full text-center " style={{ backgroundImage: mydata != '' ? `url(${mydata.imagePreview})` : `url(${imgDefault})` }}></label>
-                                    <input type="file" accept=".jpg" id="file" className="hidden" name="imgProfile" {...imgProfile} onChange={e => { imgProfile.onChange(e); handleImageUpload(e) }} />
+                                    <label htmlFor="file" className="block w-36 h-36 border border-black bg-cover border-dashed rounded-full text-center " >
+                                    <img  className="block w-36 h-36 border border-black object-cover border-dashed rounded-full text-center " src={mydata != '' ? `${mydata.imagePreview}` : `${imgDefault}`}/>
+                                    </label>
+                                    <input type="file" accept=".jpg" id="file" className="hidden" name="imgProfile" {...imgProfile} onChange={e => { handleImageUpload(e) }} />
                                     <ErrorMessage errors={errors} name="imgProfile" render={({ message }) => <LabelError msg={message} />} />
                                 </div>
                                 <div className="flex mb-4">
@@ -89,7 +96,7 @@ export default function Register() {
                                 <div className="flex items-center justify-between mt-8">
                                     <input type="submit" className="bg-sky-800 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full" value='Sign Up' />
                                 </div>
-                                <Toastify/>
+                                <Toastify />
                             </div>
                         </form>
                     }

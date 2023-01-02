@@ -1,6 +1,5 @@
 import { LabelInput } from "./Labels";
 import { toast } from 'react-toastify';
-import { DivData } from "./TagDiv";
 import Toastify from "./Toastify";
 import FormData from 'form-data'
 import axios from 'axios'
@@ -35,23 +34,23 @@ export default function TableDataUser(props) {
 
   return (
       <div className="w-full rounded-tr-lg rounded-br-lg text-xl h-[500px]">
-        <label htmlFor="file" className="block w-36 h-36 border border-black bg-cover border-dashed rounded-full text-center my-5" style={{ backgroundImage: `url(${userImg.imagePreview})` }}></label>
-        <DivData>
-          <LabelInput name="First Name" />
+        <img  className="block w-36 h-36 border border-black bg-cover border-dashed rounded-full text-center my-5"  src={userImg.imagePreview}/>
+        <div className="flex items-center">      
+            <LabelInput name="First Name" />
           <label> : {userData.firstName}</label>
-        </DivData>
-        <DivData className="my-5">
+        </div>
+        <div className="flex items-center my-5">      
           <LabelInput name="Last Name" />
           <label> : {userData.lastName}</label>
-        </DivData>
-        <DivData>
+        </div>
+        <div className="flex items-center">      
           <LabelInput name="Date Birth " />
           <label> : {userData.dateBirth}</label>
-        </DivData>
-        <DivData className="my-5">
+        </div>
+        <div className="flex items-center my-5">      
           <LabelInput name="Age " />
           <label> : {userData.Age}</label>
-        </DivData>
+        </div>
         <button className="bg-green-400  text-white rounded-lg py-2 px-5" onClick={postData}>okay</button>
         <Toastify />
       </div>
