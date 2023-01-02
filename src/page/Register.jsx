@@ -94,7 +94,7 @@ export default function Register() {
                                     <ErrorMessage errors={errors} name="Age" render={({ message }) => <LabelError msg={message} />} />
                                 </div>
                                 <div className="flex items-center justify-between mt-8">
-                                    <input type="submit" className="bg-sky-800 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full" value='Sign Up' />
+                                    <input type="submit" className="cursor-pointer bg-sky-800 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full" value='Sign Up' />
                                 </div>
                                 <Toastify />
                             </div>

@@ -33,26 +33,27 @@ export default function TableDataUser(props) {
   }
 
   return (
-      <div className="w-full rounded-tr-lg rounded-br-lg text-xl h-[500px]">
-        <img  className="block w-36 h-36 border border-black bg-cover border-dashed rounded-full text-center my-5"  src={userImg.imagePreview}/>
-        <div className="flex items-center">      
-            <LabelInput name="First Name" />
-          <label> : {userData.firstName}</label>
-        </div>
-        <div className="flex items-center my-5">      
-          <LabelInput name="Last Name" />
-          <label> : {userData.lastName}</label>
-        </div>
-        <div className="flex items-center">      
-          <LabelInput name="Date Birth " />
-          <label> : {userData.dateBirth}</label>
-        </div>
-        <div className="flex items-center my-5">      
-          <LabelInput name="Age " />
-          <label> : {userData.Age}</label>
-        </div>
-        <button className="bg-green-400  text-white rounded-lg py-2 px-5" onClick={postData}>okay</button>
-        <Toastify />
+    <div className="w-full rounded-tr-lg rounded-br-lg py-5 text-xl h-[500px] px-5 flex flex-col items-center md:block">
+      <h3 className="bold text-xl">You confirm the information?</h3>
+      <img className="block w-36 h-36 border border-black bg-cover border-dashed rounded-full text-center my-5" src={userImg.imagePreview} />
+      <div className="flex items-center">
+        <LabelInput name="First Name" />
+        <label> : {userData.firstName}</label>
       </div>
+      <div className="flex items-center my-5">
+        <LabelInput name="Last Name" />
+        <label> : {userData.lastName}</label>
+      </div>
+      <div className="flex items-center">
+        <LabelInput name="Date Birth " />
+        <label> : {userData.dateBirth}</label>
+      </div>
+      <div className="flex items-center my-5">
+        <LabelInput name="Age " />
+        <label> : {userData.Age}</label>
+      </div>
+      <button className="bg-green-400  text-white rounded-lg py-2 px-5" onClick={postData}>yes</button>
+      <Toastify />
+    </div>
   );
 }
