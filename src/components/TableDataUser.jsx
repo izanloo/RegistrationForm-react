@@ -1,10 +1,9 @@
 import { LabelInput } from "./Labels";
-import FormData from 'form-data'
-import axios from 'axios'
-import Toastify from "./Toastify";
 import { toast } from 'react-toastify';
 import { DivData } from "./TagDiv";
-
+import Toastify from "./Toastify";
+import FormData from 'form-data'
+import axios from 'axios'
 
 export default function TableDataUser(props) {
   const userData = props.dataUser
