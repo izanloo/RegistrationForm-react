@@ -1,18 +1,15 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { ErrorMessage } from "@hookform/error-message";
 import imgRegister from '../assest/images/img-page-resister.webp'
-import imgDefault from '../assest/images/profile-gray.webp'
 import { LabelError, LabelInput } from "../components/Labels";
-import ModalData from "../components/TableDataUser";
+import imgDefault from '../assest/images/profile-gray.webp'
 import TableDataUser from "../components/TableDataUser";
-import { toast } from "react-toastify";
+import { ErrorMessage } from "@hookform/error-message";
 import Toastify from "../components/Toastify";
-
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { useState } from "react";
 
 export default function Register() {
     const [dataUser, setDataUser] = useState([])
-    const [cheakImg, setCheakImg] = useState(false)
 
     // useform for get value inputs and handle error validation
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -20,7 +17,6 @@ export default function Register() {
     //upload image and show image in form--photo should not be larger than 1Mb and only jpg files----------------------------------
     const imgProfile = register("imgProfile", { required: "img is required" })
     const [mydata, setData] = useState('')
-
 
     const handleImageUpload = (event) => {
         let file = event.target.files[0];
@@ -44,6 +40,7 @@ export default function Register() {
         }
         setData('')
     }
+    // handleSubmit----------------------------------------
     const onSubmit = (data) => {
         if (data.Age < 18 || data.Age < 0) {
             alert("age should not be less than 18")
