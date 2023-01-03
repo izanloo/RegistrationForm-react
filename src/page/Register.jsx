@@ -52,58 +52,58 @@ export default function Register() {
         }
     }
     return (
-        <>
-            <div className="md:w-full h-screen px-2 sm:px-20 md:px-10 px-lg-20 lg:max-w-70 flex items-center">
-                <div className="md:grid md:grid-cols-2 bg-white border-black border-1 rounded-lg shadow-md lg:shadow-lg">
-                    <div className="hidden md:flex items-center">
-                        <img src={imgRegister} alt="Id photo" />
-                    </div>
-                    {dataUser != '' ? <TableDataUser dataUser={dataUser} mydata={mydata} /> :
-                        <form onSubmit={handleSubmit(onSubmit)} className="w-full rounded-tr-lg rounded-br-lg shadow">
-                            <div className="py-4 px-8 ">
-                                <div className="flex flex-col items-center mb-3">
-                                    <label htmlFor="file" className="block w-36 h-36 border border-black bg-cover border-dashed rounded-full text-center " >
-                                        <img className="block w-36 h-36 border border-black object-cover border-dashed rounded-full text-center " src={mydata != '' ? `${mydata.imagePreview}` : `${imgDefault}`} />
-                                    </label>
-                                    <input type="file" accept=".jpg" id="file" className="hidden" name="IdPhoto" {...IdPhoto} onChange={e => { handleImageUpload(e) }} />
-                                    <ErrorMessage errors={errors} name="IdPhoto" render={({ message }) => <LabelError msg={message} />} />
-                                </div>
-                                <div className="flex mb-4">
-                                    <div className="w-1/2 mr-1">
-                                        <LabelInput name="Name" htmlFor="Name" />
-                                        <input className="appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="Name" type="text" placeholder="Name" {...register("Name", { required: "Name is required" })} />
-                                        <ErrorMessage errors={errors} name="Name" render={({ message }) => <LabelError msg={message} />} />
-                                    </div>
-                                    <div className="w-1/2 ml-1">
-                                        <LabelInput htmlFor="Family" name="Family" />
-                                        <input className="appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="Family" type="text" placeholder="Family" {...register("Family", { required: "Family is required" })} />
-                                        <ErrorMessage errors={errors} name="Family" render={({ message }) => <LabelError msg={message} />} />
-                                    </div>
-                                </div>
-                                <div className="mb-4">
-                                    <LabelInput htmlFor="Gender" name="Gender" />
-                                    <select className='border rounded w-full py-2 px-3 text-grey-darker"'   {...register("Gender", { required: "Gender is required." })}  >
-                                        <option value="" selected disabled >gender</option>
-                                        <option value="female">Female</option>
-                                        <option value="male">Male</option>
-                                    </select>
-                                    <ErrorMessage errors={errors} name="Gender" render={({ message }) => <LabelError msg={message} />} />
-                                </div>
-                                <div className="mb-4">
-                                    <LabelInput htmlFor="dateBirth" name="Date of birth" />
-                                    <input className="appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="dateBirth" type="date"  {...register("dateBirth", { required: "Date of birth is required" })} />
-                                    <ErrorMessage errors={errors} name="dateBirth" render={({ message }) => <LabelError msg={message} />} />
-                                </div>
-                                <div className="flex items-center justify-between mt-8">
-                                    <input type="submit" className="cursor-pointer bg-sky-800 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full" value='Sign Up' />
-                                </div>
-                                <Toastify />
-                            </div>
-                        </form>
-                    }
+        <div className="md:w-full h-screen px-2 sm:px-20 md:px-10 px-lg-20 lg:max-w-70 flex items-center">
+            <div className="md:grid md:grid-cols-2 bg-white border-black border-1 rounded-lg shadow-md lg:shadow-lg">
+                <div className="hidden md:flex items-center">
+                    <img src={imgRegister} alt="Id photo" />
                 </div>
+                {dataUser != '' ? <TableDataUser dataUser={dataUser} mydata={mydata} /> :
+                    <form onSubmit={handleSubmit(onSubmit)} className="w-full rounded-tr-lg rounded-br-lg shadow">
+                        <div className="py-4 px-8 ">
+                            <div className="flex flex-col items-center mb-3">
+                                <label htmlFor="file" className="block w-36 h-36 border border-black bg-cover border-dashed rounded-full text-center " >
+                                    <img className="block w-36 h-36 border border-black object-cover border-dashed rounded-full text-center " src={mydata != '' ? `${mydata.imagePreview}` : `${imgDefault}`} />
+                                </label>
+                                <input type="file" accept=".jpg" id="file" className="hidden" name="IdPhoto" {...IdPhoto} onChange={e => { handleImageUpload(e) }} />
+                                <ErrorMessage errors={errors} name="IdPhoto" render={({ message }) => <LabelError msg={message} />} />
+                            </div>
+                            <div className="flex mb-4">
+                                <div className="w-1/2 mr-1">
+                                    <LabelInput name="Name" htmlFor="Name" />
+                                    <input className="appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="Name" type="text" placeholder="Name"
+                                        {...register("Name", { required: "Name is required" })} />
+                                    <ErrorMessage errors={errors} name="Name" render={({ message }) => <LabelError msg={message} />} />
+                                </div>
+                                <div className="w-1/2 ml-1">
+                                    <LabelInput htmlFor="Family" name="Family" />
+                                    <input className="appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="Family" type="text" placeholder="Family"
+                                        {...register("Family", { required: "Family is required" })} />
+                                    <ErrorMessage errors={errors} name="Family" render={({ message }) => <LabelError msg={message} />} />
+                                </div>
+                            </div>
+                            <div className="mb-4">
+                                <LabelInput htmlFor="Gender" name="Gender" />
+                                <select className='border rounded w-full py-2 px-3 text-grey-darker"'   {...register("Gender", { required: "Gender is required." })}  >
+                                    <option value="" selected disabled >gender</option>
+                                    <option value="female">Female</option>
+                                    <option value="male">Male</option>
+                                </select>
+                                <ErrorMessage errors={errors} name="Gender" render={({ message }) => <LabelError msg={message} />} />
+                            </div>
+                            <div className="mb-4">
+                                <LabelInput htmlFor="dateBirth" name="Date of birth" />
+                                <input className="appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="dateBirth" type="date"
+                                    {...register("dateBirth", { required: "Date of birth is required" })} />
+                                <ErrorMessage errors={errors} name="dateBirth" render={({ message }) => <LabelError msg={message} />} />
+                            </div>
+                            <div className="flex items-center justify-between mt-8">
+                                <input type="submit" className="cursor-pointer bg-sky-800 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded-full" value='Sign Up' />
+                            </div>
+                            <Toastify />
+                        </div>
+                    </form>
+                }
             </div>
-
-        </>
+        </div>
     )
 }
