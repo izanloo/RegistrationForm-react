@@ -3,16 +3,22 @@ import { LabelError, LabelInput } from "../components/Labels";
 import imgDefault from '../assest/images/profile-gray.webp'
 import TableDataUser from "../components/TableDataUser";
 import { ErrorMessage } from "@hookform/error-message";
+import "react-datepicker/dist/react-datepicker.css";
+import { Controller, useForm } from "react-hook-form";
 import Toastify from "../components/Toastify";
-import { useForm } from "react-hook-form";
+import DatePicker from "react-datepicker";
 import { toast } from "react-toastify";
 import { useState } from "react";
 
+// import DateBirth from '../components/DateBirth';
+
 export default function Register() {
+    const ageRestriction = new Date().setFullYear(new Date().getFullYear() - 18);
+
     const [dataUser, setDataUser] = useState([])
 
     // useform for get value inputs and handle error validation
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, control, formState: { errors }, handleSubmit } = useForm();
 
     //upload image and show image in form--photo should not be larger than 1Mb and only jpg files----------------------------------
     const IdPhoto = register("IdPhoto", { required: "Id Photo is required" })
@@ -42,7 +48,6 @@ export default function Register() {
         }
         setData('')
     }
-    const [errGender, setErrGender] = useState(false)
     // handleSubmit----------------------------------------
     const onSubmit = (data) => {
         if (check) {
@@ -51,6 +56,7 @@ export default function Register() {
             toast.error("please enter phoo!!!!")
         }
     }
+
     return (
         <div className="md:w-full h-screen px-2 sm:px-20 md:px-10 px-lg-20 lg:max-w-70 flex items-center">
             <div className="md:grid md:grid-cols-2 bg-white border-black border-1 rounded-lg shadow-md lg:shadow-lg">
@@ -64,7 +70,8 @@ export default function Register() {
                                 <label htmlFor="file" className="block w-36 h-36 border border-black bg-cover border-dashed rounded-full text-center " >
                                     <img className="block w-36 h-36 border border-black object-cover border-dashed rounded-full text-center " src={mydata != '' ? `${mydata.imagePreview}` : `${imgDefault}`} />
                                 </label>
-                                <input type="file" accept=".jpg" id="file" className="hidden" name="IdPhoto" {...IdPhoto} onChange={e => { handleImageUpload(e) }} />
+                                <input type="file" accept=".jpg" id="file" className="hidden" name="IdPhoto"
+                                    {...IdPhoto} onChange={e => { handleImageUpload(e) }} />
                                 <ErrorMessage errors={errors} name="IdPhoto" render={({ message }) => <LabelError msg={message} />} />
                             </div>
                             <div className="flex mb-4">
@@ -92,8 +99,24 @@ export default function Register() {
                             </div>
                             <div className="mb-4">
                                 <LabelInput htmlFor="dateBirth" name="Date of birth" />
-                                <input className="appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="dateBirth" type="date"
-                                    {...register("dateBirth", { required: "Date of birth is required" })} />
+                                <Controller
+                                    control={control}
+                                    name='dateBirth'
+                                    {...register("dateBirth", { required: "Date of birth is required" })}
+                                    render={({ field }) => (
+                                        <>
+                                            <DatePicker
+                                                placeholderText='Must be over 18 years old'
+                                                onChange={(date) => field.onChange(date)}
+                                                selected={field.value}
+                                                maxDate={ageRestriction}
+                                                dateFormat="MMMM d, yyyy"
+                                                showYearDropdown="true"
+                                                className='border rounded w-full py-2 px-3 text-grey-darker'
+                                            />
+                                        </>
+                                    )}
+                                />
                                 <ErrorMessage errors={errors} name="dateBirth" render={({ message }) => <LabelError msg={message} />} />
                             </div>
                             <div className="flex items-center justify-between mt-8">

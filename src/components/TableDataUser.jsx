@@ -1,4 +1,3 @@
-import { LabelInput } from "./Labels";
 import { toast } from 'react-toastify';
 import Toastify from "./Toastify";
 import FormData from 'form-data'
@@ -31,7 +30,6 @@ export default function TableDataUser(props) {
         toast.error("Unfortunately, a problem has occurred ♥ !!")
       });
   }
-
   return (
     <div className="w-full rounded-tr-lg rounded-br-lg py-5 text-xl h-[500px] px-5 flex flex-col items-center md:block">
       <h3 className="bold text-xl">You confirm the information?</h3>
@@ -52,7 +50,7 @@ export default function TableDataUser(props) {
           </tr>
           <tr>
             <td className="font-bold">Date of birth:</td>
-            <td className="text-xl">{userData.dateBirth}</td>
+            <td className="text-xl flex-row-reverse">{userData.dateBirth.toLocaleDateString()}</td>
           </tr>
         </tbody>
       </table>
