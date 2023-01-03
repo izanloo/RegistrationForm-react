@@ -29,7 +29,7 @@ export default function Register() {
         let file = event.target.files[0];
         const extension = file.name.split('.').pop().toLowerCase();
         if (extension == 'jpg') {
-            if (file.size < 100000) {
+            if (file.size < 1000) {
                 let reader = new FileReader();
                 reader.onloadend = () => {
                     setData({
