@@ -69,7 +69,7 @@ export default function Register() {
                     <form onSubmit={handleSubmit(onSubmit)} className="w-full rounded-tr-lg rounded-br-lg shadow">
                         <div className="py-4 px-8 ">
                             <div className="flex flex-col items-center mb-3">
-                                <label htmlFor="file" className="block w-36 h-36 border border-black bg-cover border-dashed rounded-full text-center " >
+                                <label htmlFor="file" className="cursor-pointer block w-36 h-36 border border-black bg-cover border-dashed rounded-full text-center " >
                                     <img className="block w-36 h-36 border border-black object-cover border-dashed rounded-full text-center " src={mydata != '' ? `${mydata.imagePreview}` : `${imgDefault}`} />
                                 </label>
 
