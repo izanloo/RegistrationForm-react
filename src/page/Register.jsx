@@ -29,7 +29,7 @@ export default function Register() {
         let file = event.target.files[0];
         const extension = file.name.split('.').pop().toLowerCase();
         if (extension == 'jpg') {
-            if (file.size < 1000) {
+            if (file.size < 100000) {
                 let reader = new FileReader();
                 reader.onloadend = () => {
                     setData({
@@ -42,18 +42,20 @@ export default function Register() {
                 setCheck(true)
             } else {
                 toast.error("photo should not be larger than 1Mb");
+                setCheck(false)
             }
         } else {
             toast.error("photo only jpg files")
+            setCheck(false)
         }
         setData('')
     }
     // handleSubmit----------------------------------------
     const onSubmit = (data) => {
-        if (check) {
-            setDataUser(data)
-        } else {
+        if (check == false) {
             toast.error("please enter phoo!!!!")
+        } else {
+            setDataUser(data)
         }
     }
 
@@ -70,9 +72,10 @@ export default function Register() {
                                 <label htmlFor="file" className="block w-36 h-36 border border-black bg-cover border-dashed rounded-full text-center " >
                                     <img className="block w-36 h-36 border border-black object-cover border-dashed rounded-full text-center " src={mydata != '' ? `${mydata.imagePreview}` : `${imgDefault}`} />
                                 </label>
+
                                 <input type="file" accept=".jpg" id="file" className="hidden" name="IdPhoto"
                                     {...IdPhoto} onChange={e => { handleImageUpload(e) }} />
-                                <ErrorMessage errors={errors} name="IdPhoto" render={({ message }) => <LabelError msg={message} />} />
+                                {check ? <></> : <ErrorMessage errors={errors} name="IdPhoto" render={({ message }) => <LabelError msg={message} />} />}
                             </div>
                             <div className="flex mb-4">
                                 <div className="w-1/2 mr-1">
