@@ -8,7 +8,9 @@ module.exports = {
       maxWidth:{
         '70':'70%'
       },
-      
+      backgroundColor: {
+        'rozeVip': '#d20b2e'
+      }
     },
   },
   plugins: [],
