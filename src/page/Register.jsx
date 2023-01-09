@@ -8,28 +8,28 @@ import DatePicker from "react-datepicker";
 import { Controller, useForm } from "react-hook-form";
 import Toastify from "../components/Toastify";
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AppContext } from '../context/Context';
 
 // import DateBirth from '../components/DateBirth';
 
 export default function Register() {
     const ageRestriction = new Date().setFullYear(new Date().getFullYear() - 18);
-
-    const [dataUser, setDataUser] = useState([])
+    const { dataUser, setDataUser } = useContext(AppContext)
+    const { mydata, setData } = useContext(AppContext)
 
     // useform for get value inputs and handle error validation
     const { register, control, formState: { errors }, handleSubmit } = useForm();
 
     //upload image and show image in form--photo should not be larger than 1Mb and only jpg files----------------------------------
     const IdPhoto = register("IdPhoto", { required: "Id Photo is required" })
-    const [mydata, setData] = useState('')
     const [check, setCheck] = useState(false)
 
     const handleImageUpload = (event) => {
         let file = event.target.files[0];
         const extension = file.name.split('.').pop().toLowerCase();
         if (extension == 'jpg') {
-            if (file.size < 1000) {
+            if (file.size < 1000000) {
                 let reader = new FileReader();
                 reader.onloadend = () => {
                     setData({
